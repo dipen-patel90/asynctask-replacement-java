@@ -13,15 +13,17 @@ Handler handler = new Handler(Looper.getMainLooper());
 ...
 executor.execute(() -> {
         //Do some background operation here(e.g fetching data from server etc)     
+        ...
         handler.post(() -> {
          //Do some main thread operation like stopping progress bar or updating UI with fecthed data 
+         ...
         });
     }); 
 ```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-I have implemented little bit generic way to do the above operation instead of writing Executors and Handler everytime we can use the below class and also we can specify the response type of doInBackground.
+I have implemented little bit generic way to do the above operation and instead of writing Executors and Handler everytime we can use the below class and also we can specify the response type of doInBackground.
 
 ```
 public class CustomAsyncTask<ResponseType> {
